@@ -1,7 +1,6 @@
 <?php
 // check if fields passed are empty
-if(empty($_POST['first_name'])  ||
-   empty($_POST['last_name'])   ||
+if(empty($_POST['name'])  		||
    empty($_POST['email']) 		||
    empty($_POST['message'])	||
    !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
@@ -10,29 +9,17 @@ if(empty($_POST['first_name'])  ||
 	return false;
    }
 	
-$first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
+$name = $_POST['name'];
 $email_address = $_POST['email'];
 $message = $_POST['message'];
-
-
-
-
-// -------------------------------------------
-// --- ENTER YOUR EMAIL ADDRESS HERE
-// -------------------------------------------
-
-$to = 'youremail@example.com';
-
-// -------------------------------------------
-
-
-
+	
+// create email body and send it	
+$to = 'chris@greatrok.com'; // put your email
 $email_subject = "Contact form submitted by:  $name";
 $email_body = "You have received a new message. \n\n".
-				  " Here are the details:\n \nName: $first_name $last_name \n ".
+				  " Here are the details:\n \nName: $name \n ".
 				  "Email: $email_address\n Message \n $message";
-$headers = "From: $to\n";
+$headers = "From: chris@greatrok.com\n";
 $headers .= "Reply-To: $email_address";	
 mail($to,$email_subject,$email_body,$headers);
 return true;			
